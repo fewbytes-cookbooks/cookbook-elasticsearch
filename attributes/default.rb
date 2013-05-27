@@ -17,6 +17,7 @@ default.elasticsearch[:host]          = "http://download.elasticsearch.org"
 default.elasticsearch[:repository]    = "elasticsearch/elasticsearch"
 default.elasticsearch[:filename]      = "elasticsearch-#{node.elasticsearch[:version]}.tar.gz"
 default.elasticsearch[:download_url]  = [node.elasticsearch[:host], node.elasticsearch[:repository], node.elasticsearch[:filename]].join('/')
+default.elasticsearch[:checksum]      = "534b9fdb2fa9031f539b19cc4cfc1345bbbb013a285a21105ca87348b96b3389"
 
 # === NAMING
 #
