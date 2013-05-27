@@ -51,12 +51,6 @@ data_paths.each do |path|
   end
 end
 
-# Create service
-#
-template "/etc/init.d/elasticsearch" do
-  source "elasticsearch.init.erb"
-  owner 'root' and mode 0755
-end
 
 # Download, extract, symlink the elasticsearch libraries and binaries
 #
@@ -133,6 +127,12 @@ end
 if node.platform_family == "debian"
   runit_service "elasticsearch"
 else
+  # Create service
+  #
+  template "/etc/init.d/elasticsearch" do
+    source "elasticsearch.init.erb"
+    owner 'root' and mode 0755
+  end
   service "elasticsearch" do
     supports :status => true, :restart => true
     action [ :enable ]
