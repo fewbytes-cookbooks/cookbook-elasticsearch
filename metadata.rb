@@ -7,10 +7,11 @@ version          "0.2.7"
 name             "elasticsearch"
 
 depends 'ark'
+depends 'runit'
+depends 'java'
 
 recommends 'build-essential'
 recommends 'xml'
-recommends 'java'
 recommends 'monit'
 
 provides 'elasticsearch'

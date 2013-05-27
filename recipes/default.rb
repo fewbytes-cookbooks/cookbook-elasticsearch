@@ -58,11 +58,6 @@ template "/etc/init.d/elasticsearch" do
   owner 'root' and mode 0755
 end
 
-service "elasticsearch" do
-  supports :status => true, :restart => true
-  action [ :enable ]
-end
-
 # Download, extract, symlink the elasticsearch libraries and binaries
 #
 ark "elasticsearch" do
@@ -134,3 +129,13 @@ template "logging.yml" do
 
   notifies :restart, 'service[elasticsearch]'
 end
+
+if node.platform_family == "debian"
+  runit_service "elasticsearch"
+else
+  service "elasticsearch" do
+    supports :status => true, :restart => true
+    action [ :enable ]
+  end
+end
+
