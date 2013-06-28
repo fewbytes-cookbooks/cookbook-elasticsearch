@@ -54,6 +54,9 @@ end
 
 # Download, extract, symlink the elasticsearch libraries and binaries
 #
+ark_prefix_root = node.elasticsearch[:dir] || node.ark[:prefix_root]
+ark_prefix_home = node.elasticsearch[:dir] || node.ark[:prefix_home]
+
 ark "elasticsearch" do
   url   node.elasticsearch[:download_url]
   owner node.elasticsearch[:user]
@@ -61,6 +64,8 @@ ark "elasticsearch" do
   version node.elasticsearch[:version]
   has_binaries ['bin/elasticsearch', 'bin/plugin']
   checksum node.elasticsearch[:checksum]
+  prefix_root   ark_prefix_root
+  prefix_home   ark_prefix_home
 
   notifies :start,   'service[elasticsearch]'
   notifies :restart, 'service[elasticsearch]'
