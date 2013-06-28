@@ -7,4 +7,8 @@ export ES_CLASSPATH
 export ES_HEAP_SIZE
 
 export ES_JAVA_OPTS
+
+ulimit -n <%= node[:elasticsearch][:limits][:nofile]  %>
+ulimit -l <%= node[:elasticsearch][:limits][:memlock] %>
+
 exec chpst -u <%= node[:elasticsearch][:user] %> /usr/local/bin/elasticsearch -f
