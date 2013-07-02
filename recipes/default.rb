@@ -23,7 +23,7 @@ user node.elasticsearch[:user] do
 end
 
 # FIX: Work around the fact that Chef creates the directory even for `manage_home: false`
-es_home_dir = ::File.join(node.elasticsearch[:dir])
+es_home_dir = ::File.join(node.elasticsearch[:dir], "elasticsearch")
 bash "remove the elasticsearch user home" do
   user    'root'
   code    "rm -rf  #{node.elasticsearch[:dir]}/elasticsearch"
